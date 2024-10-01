@@ -1,4 +1,4 @@
-from sender_stand_request import post_new_order
+from sender_stand_request import post_new_order, get_track_order
 import configuration
 import requests
 import data
@@ -15,14 +15,17 @@ def post_url_with_track(body_order):
     url_track = configuration.GET_ORDER_PATH +"?t=" + str(post_track_path)
     return  url_track
 
+track = post_url_with_track(data.body_order)
 
-def post_track_order(order):
-    post_track = requests.get(configuration.URL_SERVICE + post_url_with_track(order))
-    print (post_track)
+def post_track_order():
+    post_track = get_track_order(track)
     assert post_track.status_code == 200
 
 
-post_track_order(data.body_order)
+
+def test_get_order():
+    post_url_with_track(data.body_order)
+    post_track_order()
 
 
 

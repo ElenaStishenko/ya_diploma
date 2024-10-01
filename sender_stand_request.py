@@ -1,6 +1,5 @@
 import requests
 import configuration
-import data
 
 def post_new_order(body):
 
@@ -9,3 +8,5 @@ def post_new_order(body):
                          )
 
 
+def get_track_order(track):
+    return requests.get(configuration.URL_SERVICE + track)
